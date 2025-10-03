@@ -1,61 +1,92 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+// Type for post data
+interface Post {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  date: string;
+  image: string;
+}
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('home'); // 'home', 'articles', 'good-news'
   const [activeCategory, setActiveCategory] = useState('Бүгд');
+  const [articles, setArticles] = useState<Post[]>([]);
 
-  // Sample articles data
-  const articles = [
-    {
-      id: 1,
-      title: "Шинэ бүтээгээд өнөөгийн махбод хамаагүй",
-      description: "Шинэ Брүс Төмөөр \"самбай бийнд\" дурсан. Хөдөө Үрэгжээлт дорсоо\" Брүс Төмөө уншихг. Загварын зааж ажил уншдах зүүрэл мэдээг.",
-      category: "Сайн мэдээ",
-      date: "26/09/2025",
-      image: "https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp"
-    },
-    {
-      id: 2,
-      title: "Паулын зөрлөсөн сайн мэдээ",
-      description: "Мосегийн хуулиас амт галздаж нэгт Есүс Христ хуулд ёстой Түүний дагажих болтогдоо мэдүүлэх уртаж уул болон.",
-      category: "Сайн мэдээ",
-      date: "26/09/2025",
-      image: "https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp"
-    },
-    {
-      id: 3,
-      title: "Хэмжээлшүүд нь хайр иргээл",
-      description: "Энэ нь ааргүү бүс хайж хэтэргүүд сөнгөлөн Төөрөн зөрлөгсөн мэдээ нь амьдлыг суулт хэлэлмээр зөөлөн мэндчилх хаар.",
-      category: "Сургаалт зүйрлэлүүд",
-      date: "26/09/2025",
-      image: "https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp"
-    },
-    {
-      id: 4,
-      title: "Амилалтын найдвар",
-      description: "Хэдэгийн амилааний ер итгэлцээд лалко найдваар, амилалт түгээс зэг.",
-      category: "Үхэл ба амилал",
-      date: "26/09/2025",
-      image: "https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp"
-    },
-    {
-      id: 5,
-      title: "Төөрсөн хонины сүргээлт зүйрлэл",
-      description: "Есүсний хайр бэ ха гүүлгэлний гүүлийг нэ унших андаа сүр энэл зүүлгэлээгүй гүү үзэг хайжаадал.",
-      category: "Сургаалт зүйрлэлүүд",
-      date: "26/09/2025",
-      image: "https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp"
-    },
-    {
-      id: 6,
-      title: "Мөний амьдал нийтлэгт",
-      description: "Энэ бол миний CloudFlare-д ул заалзагуулсан санаанаас энэ жил амьд нийтлэг аж.",
-      category: "Мөнх үгийн ойлголт",
-      date: "26/09/2025",
-      image: "https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp"
-    }
-  ];
+  // Fetch posts from API
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await fetch('/api/posts');
+        if (response.ok) {
+          const data: { posts: Post[] } = await response.json();
+          setArticles(data.posts || []);
+        } else {
+          console.error('Failed to fetch posts');
+          // Fallback to static data if API fails
+          setArticles([
+            {
+              id: 1,
+              title: "Шинэ бүтээгээд өнөөгийн махбод хамаагүй",
+              description: "Шинэ Брүс Төмөөр \"самбай бийнд\" дурсан. Хөдөө Үрэгжээлт дорсоо\" Брүс Төмөө уншихг. Загварын зааж ажил уншдах зүүрэл мэдээг.",
+              category: "Сайн мэдээ",
+              date: "26/09/2025",
+              image: "https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp"
+            },
+            {
+              id: 2,
+              title: "Паулын зөрлөсөн сайн мэдээ",
+              description: "Мосегийн хуулиас амт галздаж нэгт Есүс Христ хуулд ёстой Түүний дагажих болтогдоо мэдүүлэх уртаж уул болон.",
+              category: "Сайн мэдээ",
+              date: "26/09/2025",
+              image: "https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp"
+            },
+            {
+              id: 3,
+              title: "Хэмжээлшүүд нь хайр иргээл",
+              description: "Энэ нь ааргүү бүс хайж хэтэргүүд сөнгөлөн Төөрөн зөрлөгсөн мэдээ нь амьдлыг суулт хэлэлмээр зөөлөн мэндчилх хаар.",
+              category: "Сайн мэдээ",
+              date: "26/09/2025",
+              image: "https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp"
+            },
+            {
+              id: 4,
+              title: "Амилалтын найдвар",
+              description: "Хэдэгийн амилааний ер итгэлцээд лалко найдваар, амилалт түгээс зэг.",
+              category: "Үхэл ба амилал",
+              date: "26/09/2025",
+              image: "https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp"
+            },
+            {
+              id: 5,
+              title: "Төөрсөн хонины сүргээлт зүйрлэл",
+              description: "Есүсний хайр бэ ха гүүлгэлний гүүлийг нэ унших андаа сүр энэл зүүлгэлээгүй гүү үзэг хайжаадал.",
+              category: "Сургаалт зүйрлэлүүд",
+              date: "26/09/2025",
+              image: "https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp"
+            },
+            {
+              id: 6,
+              title: "Мөний амьдал нийтлэгт",
+              description: "Энэ бол миний CloudFlare-д ул заалзагуулсан санаанаас энэ жил амьд нийтлэг аж.",
+              category: "Мөнх үгийн ойлголт",
+              date: "26/09/2025",
+              image: "https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp"
+            }
+          ]);
+        }
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+        // Use fallback data on error
+        setArticles([]);
+      }
+    };
+
+    fetchPosts();
+  }, []);
 
   // Filter articles based on active category
   const filteredArticles = activeCategory === 'Бүгд' 

@@ -37,7 +37,7 @@ export default function AdminPanel() {
     }, 1000);
   };
 
-  const handlePostSubmit = (e: React.FormEvent) => {
+  const handlePostSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validate form
@@ -46,20 +46,40 @@ export default function AdminPanel() {
       return;
     }
 
-    // In a real application, you would send this to your backend/database
-    console.log('New post data:', newPost);
-    
-    // For demo purposes, we'll show the data and reset form
-    alert(`Нийтлэл амжилттай нэмэгдлээ!\n\nГарчиг: ${newPost.title}\nАнгилал: ${newPost.category}`);
-    
-    // Reset form
-    setNewPost({
-      title: '',
-      description: '',
-      category: 'Сайн мэдээ',
-      image: '',
-      date: new Date().toLocaleDateString('mn-MN')
-    });
+    setIsLoading(true);
+
+    try {
+      // Send post data to API
+      const response = await fetch('/api/posts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newPost),
+      });
+
+      if (response.ok) {
+        await response.json();
+        alert(`Нийтлэл амжилттай нэмэгдлээ!\n\nГарчиг: ${newPost.title}\nАнгилал: ${newPost.category}`);
+        
+        // Reset form
+        setNewPost({
+          title: '',
+          description: '',
+          category: 'Сайн мэдээ',
+          image: '',
+          date: new Date().toLocaleDateString('mn-MN')
+        });
+      } else {
+        const error: { error?: string } = await response.json();
+        alert(`Алдаа гарлаа: ${error.error || 'Тодорхойгүй алдаа'}`);
+      }
+    } catch (error) {
+      console.error('Error creating post:', error);
+      alert('Сүлжээний алдаа гарлаа. Дахин оролдоно уу.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   // Login form
@@ -215,9 +235,10 @@ export default function AdminPanel() {
             <div className="flex gap-4">
               <button
                 type="submit"
-                className="bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                disabled={isLoading}
+                className="bg-blue-600 text-white py-2 px-6 rounded-lg hover:bg-blue-700 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Нийтлэл нэмэх
+                {isLoading ? 'Хадгалж байна...' : 'Нийтлэл нэмэх'}
               </button>
               <button
                 type="button"
