@@ -2,81 +2,122 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900">SoonBlog.com</h1>
-          <nav className="flex space-x-8">
-            <a href="#" className="text-gray-600 hover:text-gray-900">Нүүр</a>
-            <a href="#" className="text-gray-600 hover:text-gray-900">Нийтлэл</a>
-            <a href="#" className="text-gray-600 hover:text-gray-900">Сайн мэдээ</a>
+      <header className="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-50 backdrop-blur-sm bg-white/95">
+        <div className="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
+          <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight hover:text-blue-600 transition-colors duration-300 cursor-pointer">
+            SoonBlog.com
+          </h1>
+          <nav className="hidden md:flex space-x-10">
+            <a href="#" className="text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105 relative group">
+              Нүүр
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#" className="text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105 relative group">
+              Нийтлэл
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+            <a href="#" className="text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105 relative group">
+              Сайн мэдээ
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+            </a>
           </nav>
-          <div className="flex items-center">
-            <input 
-              type="text" 
-              placeholder="хайх..." 
-              className="px-3 py-2 border border-gray-300 rounded-lg text-sm"
-            />
+          <div className="flex items-center space-x-4">
+            <div className="relative">
+              <input 
+                type="text" 
+                placeholder="Хайх..." 
+                className="px-4 py-2.5 pl-10 border-2 border-gray-200 rounded-full text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-300 w-64"
+              />
+              <svg className="absolute left-3 top-3 h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+            {/* Mobile menu button */}
+            <button className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors duration-300">
+              <svg className="h-6 w-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="bg-yellow-400 py-16">
-        <div className="max-w-6xl mx-auto px-4 flex items-center">
-          <div className="w-1/2">
-            <div className="bg-yellow-500 p-12 rounded-lg">
-              <h2 className="text-6xl font-bold text-gray-800 mb-4">Зүйрлэл</h2>
+      <section className="bg-gray-800 py-8 md:py-16">
+        <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center gap-6 md:gap-0">
+          <div className="w-full md:w-1/2">
+            <div className="relative bg-yellow-500 rounded-lg overflow-hidden h-48 md:h-64">
+              <img 
+                src="https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp" 
+                alt="Hero image"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
-          <div className="w-1/2 pl-8">
-            <div className="bg-orange-100 px-3 py-1 rounded text-sm text-orange-600 inline-block mb-4">
+          <div className="w-full md:w-1/2 md:pl-8">
+            <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm text-orange-300 inline-block mb-4 border border-white/20">
               Онцлох нийтлэл
             </div>
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">
+            <h3 className="text-2xl md:text-4xl font-bold text-white mb-4">
               Төөрсөн хонины сүргээлт зүйрлэл
             </h3>
-            <p className="text-gray-700 mb-4">
+            <p className="text-gray-300 mb-4 text-base md:text-lg">
               Бөөний сайн бэ ер хүүхдийн үхэд хүүхэд албад сонгосн зүйрлээний гүн үгнээ хайлаалзых.
             </p>
-            <span className="text-sm text-gray-500">26/09/2025</span>
+            <span className="text-sm text-gray-400 bg-gray-700/50 px-3 py-1 rounded-full">26/09/2025</span>
           </div>
         </div>
       </section>
 
       {/* Articles Section */}
-      <section className="py-12">
-        <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-8">Нийтлэлүүд</h2>
+      {/* Articles Section */}
+      <section className="py-8 md:py-16 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4 md:px-6">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Нийтлэлүүд</h2>
+            <p className="text-gray-600 text-base md:text-lg">Сүүлийн үеийн мэдээ, мэдлэг, туршлагууд</p>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mt-4"></div>
+          </div>
           
           {/* Category Tags */}
-          <div className="flex space-x-4 mb-8">
-            <span className="bg-blue-500 text-white px-3 py-1 rounded text-sm">Бүгд</span>
-            <span className="bg-gray-200 text-gray-700 px-3 py-1 rounded text-sm">Advent</span>
-            <span className="bg-gray-200 text-gray-700 px-3 py-1 rounded text-sm">Уран бэ амьдрал</span>
-            <span className="bg-gray-200 text-gray-700 px-3 py-1 rounded text-sm">Сайн мэдээ</span>
-            <span className="bg-gray-200 text-gray-700 px-3 py-1 rounded text-sm">Сүргээлт зүйрлэлүүд</span>
-            <span className="bg-gray-200 text-gray-700 px-3 py-1 rounded text-sm">Мааш уулам сонсголт</span>
-            <span className="bg-gray-200 text-gray-700 px-3 py-1 rounded text-sm">Тангаж туухай</span>
+          <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-12 px-2">
+            <span className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer hover:scale-105">
+              Бүгд
+            </span>
+            <span className="bg-white text-gray-700 px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105 border border-gray-200">
+              Advent
+            </span>
+            <span className="bg-white text-gray-700 px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105 border border-gray-200">
+              Үхэл ба амилал
+            </span>
+            <span className="bg-white text-gray-700 px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105 border border-gray-200">
+              Сайн мэдээ
+            </span>
+            <span className="bg-white text-gray-700 px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105 border border-gray-200">
+              Сургаалт зүйрлэлүүд
+            </span>
+            <span className="bg-white text-gray-700 px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105 border border-gray-200">
+              Мөнх үгийн ойлголт
+            </span>
+            <span className="bg-white text-gray-700 px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105 border border-gray-200">
+              Тамын тухай
+            </span>
           </div>
 
           {/* Article Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             {/* Article 1 */}
-            <article className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="relative h-48 bg-gradient-to-br from-orange-400 to-orange-600">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <h3 className="text-white text-xl font-bold mb-2">Шинэ бүтээгдэл</h3>
-                    <p className="text-white text-lg">эне махбод хамаагүй</p>
-                  </div>
-                </div>
-                <div className="absolute bottom-4 right-4 bg-black bg-opacity-50 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">
-                  4
-                </div>
+            <article className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 cursor-pointer">
+              <div className="relative h-40 md:h-48 overflow-hidden">
+                <img 
+                  src="https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp" 
+                  alt="Article image"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
               </div>
-              <div className="p-4">
+              <div className="p-4 md:p-6">
                 <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Сайн мэдээ</span>
-                <h4 className="font-bold mt-2 mb-2">Шинэ бүтээгээд өнөөгийн махбод хамаагүй</h4>
+                <h4 className="font-bold text-lg md:text-xl mt-2 mb-2">Шинэ бүтээгээд өнөөгийн махбод хамаагүй</h4>
                 <p className="text-gray-600 text-sm mb-3">
                   Шинэ Брүс Төмөөр &ldquo;самбай бийнд&rdquo; дурсан. Хөдөө Үрэгжээлт дорсоо&rdquo; Брүс Төмөө уншихг. Загварын зааж ажил уншдах зүүрэл мэдээг.
                 </p>
@@ -85,17 +126,13 @@ export default function Home() {
             </article>
 
             {/* Article 2 */}
-            <article className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="relative h-48 bg-gradient-to-br from-gray-600 to-gray-800">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <h3 className="text-white text-xl font-bold mb-2">Бид Мосегийн</h3>
-                    <p className="text-white text-lg">хуулийг дагах ёстой юу?</p>
-                  </div>
-                </div>
-                <div className="absolute bottom-4 right-4 bg-black bg-opacity-50 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">
-                  1
-                </div>
+            <article className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 cursor-pointer">
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src="https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp" 
+                  alt="Article image"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
               </div>
               <div className="p-4">
                 <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Сайн мэдээ</span>
@@ -108,17 +145,13 @@ export default function Home() {
             </article>
 
             {/* Article 3 */}
-            <article className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="relative h-48 bg-gradient-to-br from-yellow-500 to-orange-500">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <h3 className="text-white text-xl font-bold mb-2">Хэмжээлшүүд</h3>
-                    <p className="text-white text-lg">хайр иргээл</p>
-                  </div>
-                </div>
-                <div className="absolute bottom-4 right-4 bg-black bg-opacity-50 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">
-                  2
-                </div>
+            <article className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 cursor-pointer">
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src="https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp" 
+                  alt="Article image"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
               </div>
               <div className="p-4">
                 <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Сайн мэдээ</span>
@@ -132,11 +165,15 @@ export default function Home() {
           </div>
 
           {/* Bottom Articles */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mt-8 md:mt-12">
             {/* Purple Article */}
-            <article className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="h-32 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
-                <h3 className="text-white text-2xl font-bold">Амилалт</h3>
+            <article className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 cursor-pointer">
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src="https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp" 
+                  alt="Article image"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
               </div>
               <div className="p-4">
                 <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Сүргээлт зүйрлэлүүд</span>
@@ -149,9 +186,13 @@ export default function Home() {
             </article>
 
             {/* Yellow Article */}
-            <article className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="h-32 bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center">
-                <h3 className="text-gray-800 text-2xl font-bold">Зүйрлэл</h3>
+            <article className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 cursor-pointer">
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src="https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp" 
+                  alt="Article image"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
               </div>
               <div className="p-4">
                 <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Сүргээлт зүйрлэлүүд</span>
@@ -164,12 +205,13 @@ export default function Home() {
             </article>
 
             {/* Blue Article */}
-            <article className="bg-white rounded-lg shadow-md overflow-hidden">
-              <div className="h-32 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
-                <div className="text-center">
-                  <h3 className="text-white text-xl font-bold">&ldquo;МӨНХ&rdquo;</h3>
-                  <p className="text-white">гэсэн ойлголт</p>
-                </div>
+            <article className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 cursor-pointer">
+              <div className="relative h-48 overflow-hidden">
+                <img 
+                  src="https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp" 
+                  alt="Article image"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
               </div>
               <div className="p-4">
                 <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Сайн мэдээ</span>
@@ -185,22 +227,22 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-8">
+      <footer className="bg-gray-800 text-white py-6 md:py-8">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="flex justify-between">
-            <div>
+          <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-0">
+            <div className="text-center md:text-left">
               <h3 className="text-xl font-bold mb-4">SoonBlog.com</h3>
               <p className="text-gray-400">Иргэл, найдвар, хайрын түүхэн мэдээ блог.</p>
             </div>
-            <div>
+            <div className="text-center md:text-left">
               <h4 className="font-bold mb-4">ХОЛБООСУУД</h4>
-              <ul className="space-y-2">
+              <ul className="space-y-2 flex flex-col md:block">
                 <li><a href="#" className="text-gray-400 hover:text-white">Нүүр</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-white">Сайн мэдээ</a></li>
               </ul>
             </div>
           </div>
-          <div className="mt-8 pt-4 border-t border-gray-700 text-center text-gray-400">
+          <div className="mt-6 md:mt-8 pt-4 border-t border-gray-700 text-center text-gray-400">
             <p className="text-gray-400">© 2025 SoonBlog.com. Бүх эрх хуулиар хамгаалагдсан.</p>
           </div>
         </div>
