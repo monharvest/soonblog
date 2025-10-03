@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -80,7 +78,7 @@ export default function Home() {
                 <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Сайн мэдээ</span>
                 <h4 className="font-bold mt-2 mb-2">Шинэ бүтээгээд өнөөгийн махбод хамаагүй</h4>
                 <p className="text-gray-600 text-sm mb-3">
-                  Шинэ Брүс Төмөөр "самбай бийнд" дурсан. Хөдөө Үрэгжээлт дорсоо" Брүс Төмөө уншихг. Загварын зааж ажил уншдах зүүрэл мэдээг.
+                  Шинэ Брүс Төмөөр &ldquo;самбай бийнд&rdquo; дурсан. Хөдөө Үрэгжээлт дорсоо&rdquo; Брүс Төмөө уншихг. Загварын зааж ажил уншдах зүүрэл мэдээг.
                 </p>
                 <span className="text-xs text-gray-400">26/09/2025</span>
               </div>
@@ -169,7 +167,7 @@ export default function Home() {
             <article className="bg-white rounded-lg shadow-md overflow-hidden">
               <div className="h-32 bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center">
                 <div className="text-center">
-                  <h3 className="text-white text-xl font-bold">''МӨНХ''</h3>
+                  <h3 className="text-white text-xl font-bold">&ldquo;МӨНХ&rdquo;</h3>
                   <p className="text-white">гэсэн ойлголт</p>
                 </div>
               </div>
@@ -203,7 +201,7 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-8 pt-4 border-t border-gray-700 text-center text-gray-400">
-            <p>© 2025 SoonBlog.com. Бүх эрх хуулиар хамгаалагдсан.</p>
+            <p className="text-gray-400">© 2025 SoonBlog.com. Бүх эрх хуулиар хамгаалагдсан.</p>
           </div>
         </div>
       </footer>
