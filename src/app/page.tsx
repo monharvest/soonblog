@@ -67,7 +67,13 @@ export default function Home() {
       {/* Header */}
       <header className="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-50 backdrop-blur-sm bg-white/95">
         <div className="max-w-6xl mx-auto px-6 py-5 flex justify-between items-center">
-          <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight hover:text-blue-600 transition-colors duration-300 cursor-pointer">
+          <h1 
+            onClick={() => {
+              setActiveSection('home');
+              setActiveCategory('Бүгд');
+            }}
+            className="text-3xl font-extrabold text-gray-900 tracking-tight hover:text-blue-600 transition-colors duration-300 cursor-pointer"
+          >
             SoonBlog.com
           </h1>
           <nav className="hidden md:flex space-x-10">
