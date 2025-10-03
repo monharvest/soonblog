@@ -1,4 +1,67 @@
+'use client';
+import { useState } from 'react';
+
 export default function Home() {
+  const [activeSection, setActiveSection] = useState('home'); // 'home', 'articles', 'good-news'
+  const [activeCategory, setActiveCategory] = useState('Бүгд');
+
+  // Sample articles data
+  const articles = [
+    {
+      id: 1,
+      title: "Шинэ бүтээгээд өнөөгийн махбод хамаагүй",
+      description: "Шинэ Брүс Төмөөр \"самбай бийнд\" дурсан. Хөдөө Үрэгжээлт дорсоо\" Брүс Төмөө уншихг. Загварын зааж ажил уншдах зүүрэл мэдээг.",
+      category: "Сайн мэдээ",
+      date: "26/09/2025",
+      image: "https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp"
+    },
+    {
+      id: 2,
+      title: "Паулын зөрлөсөн сайн мэдээ",
+      description: "Мосегийн хуулиас амт галздаж нэгт Есүс Христ хуулд ёстой Түүний дагажих болтогдоо мэдүүлэх уртаж уул болон.",
+      category: "Сайн мэдээ",
+      date: "26/09/2025",
+      image: "https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp"
+    },
+    {
+      id: 3,
+      title: "Хэмжээлшүүд нь хайр иргээл",
+      description: "Энэ нь ааргүү бүс хайж хэтэргүүд сөнгөлөн Төөрөн зөрлөгсөн мэдээ нь амьдлыг суулт хэлэлмээр зөөлөн мэндчилх хаар.",
+      category: "Сургаалт зүйрлэлүүд",
+      date: "26/09/2025",
+      image: "https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp"
+    },
+    {
+      id: 4,
+      title: "Амилалтын найдвар",
+      description: "Хэдэгийн амилааний ер итгэлцээд лалко найдваар, амилалт түгээс зэг.",
+      category: "Үхэл ба амилал",
+      date: "26/09/2025",
+      image: "https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp"
+    },
+    {
+      id: 5,
+      title: "Төөрсөн хонины сүргээлт зүйрлэл",
+      description: "Есүсний хайр бэ ха гүүлгэлний гүүлийг нэ унших андаа сүр энэл зүүлгэлээгүй гүү үзэг хайжаадал.",
+      category: "Сургаалт зүйрлэлүүд",
+      date: "26/09/2025",
+      image: "https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp"
+    },
+    {
+      id: 6,
+      title: "Мөний амьдал нийтлэгт",
+      description: "Энэ бол миний CloudFlare-д ул заалзагуулсан санаанаас энэ жил амьд нийтлэг аж.",
+      category: "Мөнх үгийн ойлголт",
+      date: "26/09/2025",
+      image: "https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp"
+    }
+  ];
+
+  // Filter articles based on active category
+  const filteredArticles = activeCategory === 'Бүгд' 
+    ? articles 
+    : articles.filter(article => article.category === activeCategory);
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -8,18 +71,45 @@ export default function Home() {
             SoonBlog.com
           </h1>
           <nav className="hidden md:flex space-x-10">
-            <a href="#" className="text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105 relative group">
+            <button 
+              onClick={() => setActiveSection('home')}
+              className={`font-medium transition-all duration-300 hover:scale-105 relative group ${
+                activeSection === 'home' ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'
+              }`}
+            >
               Нүүр
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#" className="text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105 relative group">
+              <span className={`absolute bottom-0 left-0 h-0.5 bg-blue-600 transition-all duration-300 ${
+                activeSection === 'home' ? 'w-full' : 'w-0 group-hover:w-full'
+              }`}></span>
+            </button>
+            <button 
+              onClick={() => {
+                setActiveSection('articles');
+                setActiveCategory('Бүгд');
+              }}
+              className={`font-medium transition-all duration-300 hover:scale-105 relative group ${
+                activeSection === 'articles' && activeCategory === 'Бүгд' ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'
+              }`}
+            >
               Нийтлэл
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#" className="text-gray-700 hover:text-blue-600 font-medium transition-all duration-300 hover:scale-105 relative group">
+              <span className={`absolute bottom-0 left-0 h-0.5 bg-blue-600 transition-all duration-300 ${
+                activeSection === 'articles' && activeCategory === 'Бүгд' ? 'w-full' : 'w-0 group-hover:w-full'
+              }`}></span>
+            </button>
+            <button 
+              onClick={() => {
+                setActiveSection('articles');
+                setActiveCategory('Сайн мэдээ');
+              }}
+              className={`font-medium transition-all duration-300 hover:scale-105 relative group ${
+                activeSection === 'articles' && activeCategory === 'Сайн мэдээ' ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'
+              }`}
+            >
               Сайн мэдээ
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-            </a>
+              <span className={`absolute bottom-0 left-0 h-0.5 bg-blue-600 transition-all duration-300 ${
+                activeSection === 'articles' && activeCategory === 'Сайн мэдээ' ? 'w-full' : 'w-0 group-hover:w-full'
+              }`}></span>
+            </button>
           </nav>
           <div className="flex items-center space-x-4">
             <div className="relative">
@@ -42,189 +132,183 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="bg-gray-800 py-8 md:py-16">
-        <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center gap-6 md:gap-0">
-          <div className="w-full md:w-1/2">
-            <div className="relative bg-yellow-500 rounded-lg overflow-hidden h-48 md:h-64">
-              <img 
-                src="https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp" 
-                alt="Hero image"
-                className="w-full h-full object-cover"
-              />
+      {/* Home Sections - Only show on home */}
+      {activeSection === 'home' && (
+        <>
+          {/* Hero Section */}
+          <section className="bg-gray-800 py-8 md:py-16">
+            <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center gap-6 md:gap-0">
+              <div className="w-full md:w-1/2">
+                <div className="relative bg-yellow-500 rounded-lg overflow-hidden h-48 md:h-64">
+                  <img 
+                    src="https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp" 
+                    alt="Hero image"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              <div className="w-full md:w-1/2 md:pl-8">
+                <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm text-orange-300 inline-block mb-4 border border-white/20">
+                  Онцлох нийтлэл
+                </div>
+                <h3 className="text-2xl md:text-4xl font-bold text-white mb-4">
+                  Төөрсөн хонины сүргээлт зүйрлэл
+                </h3>
+                <p className="text-gray-300 mb-4 text-base md:text-lg">
+                  Бөөний сайн бэ ер хүүхдийн үхэд хүүхэд албад сонгосн зүйрлээний гүн үгнээ хайлаалзых.
+                </p>
+                <span className="text-sm text-gray-400 bg-gray-700/50 px-3 py-1 rounded-full">26/09/2025</span>
+              </div>
+            </div>
+          </section>
+
+          {/* Categories Section on Home */}
+          <section className="py-8 md:py-16 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-4 md:px-6">
+            <div className="text-center mb-8 md:mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                {activeCategory === 'Бүгд' ? 'Нийтлэлүүд' : activeCategory}
+              </h2>
+              <p className="text-gray-600 text-base md:text-lg">
+                {activeCategory === 'Бүгд' 
+                  ? 'Сүүлийн үеийн мэдээ, мэдлэг, туршлагууд' 
+                  : `${activeCategory} сэдвээр бичигдсэн нийтлэлүүд`
+                }
+              </p>
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mt-4"></div>
+            </div>
+            
+            {/* Category Tags */}
+            <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-12 px-2">
+              {['Бүгд', 'Advent', 'Үхэл ба амилал', 'Сайн мэдээ', 'Сургаалт зүйрлэлүүд', 'Мөнх үгийн ойлголт', 'Тамын тухай'].map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setActiveCategory(category)}
+                  className={`px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer hover:scale-105 ${
+                    activeCategory === category
+                      ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white'
+                      : 'bg-white text-gray-700 border border-gray-200'
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+
+            {/* Dynamic Article Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+              {filteredArticles.map((article, index) => {
+                // Category color mapping
+                const categoryColors: { [key: string]: string } = {
+                  'Сайн мэдээ': 'bg-blue-100 text-blue-600',
+                  'Advent': 'bg-purple-100 text-purple-600',
+                  'Үхэл ба амилал': 'bg-gray-100 text-gray-600',
+                  'Сургаалт зүйрлэлүүд': 'bg-orange-100 text-orange-600',
+                  'Мөнх үгийн ойлголт': 'bg-green-100 text-green-600',
+                  'Тамын тухай': 'bg-red-100 text-red-600'
+                };
+
+                return (
+                  <article key={index} className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 cursor-pointer">
+                    <div className="relative h-40 md:h-48 overflow-hidden">
+                      <img 
+                        src={article.image}
+                        alt={article.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="p-4 md:p-6">
+                      <span className={`text-xs px-2 py-1 rounded ${categoryColors[article.category] || 'bg-gray-100 text-gray-600'}`}>
+                        {article.category}
+                      </span>
+                      <h4 className="font-bold text-lg md:text-xl mt-2 mb-2">{article.title}</h4>
+                      <p className="text-gray-600 text-sm mb-3">
+                        {article.description}
+                      </p>
+                      <span className="text-xs text-gray-400">{article.date}</span>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </div>
-          <div className="w-full md:w-1/2 md:pl-8">
-            <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm text-orange-300 inline-block mb-4 border border-white/20">
-              Онцлох нийтлэл
+        </section>
+        </>
+      )}
+
+      {/* Articles Section - Show when articles is active */}
+      {activeSection === 'articles' && (
+        <section className="py-8 md:py-16 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-4 md:px-6">
+            <div className="text-center mb-8 md:mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                {activeCategory === 'Бүгд' ? 'Нийтлэлүүд' : activeCategory}
+              </h2>
+              <p className="text-gray-600 text-base md:text-lg">
+                {activeCategory === 'Бүгд' 
+                  ? 'Сүүлийн үеийн мэдээ, мэдлэг, туршлагууд' 
+                  : `${activeCategory} сэдвээр бичигдсэн нийтлэлүүд`
+                }
+              </p>
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mt-4"></div>
             </div>
-            <h3 className="text-2xl md:text-4xl font-bold text-white mb-4">
-              Төөрсөн хонины сүргээлт зүйрлэл
-            </h3>
-            <p className="text-gray-300 mb-4 text-base md:text-lg">
-              Бөөний сайн бэ ер хүүхдийн үхэд хүүхэд албад сонгосн зүйрлээний гүн үгнээ хайлаалзых.
-            </p>
-            <span className="text-sm text-gray-400 bg-gray-700/50 px-3 py-1 rounded-full">26/09/2025</span>
+            
+            {/* Category Tags */}
+            <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-12 px-2">
+              {['Бүгд', 'Advent', 'Үхэл ба амилал', 'Сайн мэдээ', 'Сургаалт зүйрлэлүүд', 'Мөнх үгийн ойлголт', 'Тамын тухай'].map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setActiveCategory(category)}
+                  className={`px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer hover:scale-105 ${
+                    activeCategory === category
+                      ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white'
+                      : 'bg-white text-gray-700 border border-gray-200'
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+
+            {/* Dynamic Article Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+              {filteredArticles.map((article, index) => {
+                // Category color mapping
+                const categoryColors: { [key: string]: string } = {
+                  'Сайн мэдээ': 'bg-blue-100 text-blue-600',
+                  'Advent': 'bg-purple-100 text-purple-600',
+                  'Үхэл ба амилал': 'bg-gray-100 text-gray-600',
+                  'Сургаалт зүйрлэлүүд': 'bg-orange-100 text-orange-600',
+                  'Мөнх үгийн ойлголт': 'bg-green-100 text-green-600',
+                  'Тамын тухай': 'bg-red-100 text-red-600'
+                };
+
+                return (
+                  <article key={index} className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 cursor-pointer">
+                    <div className="relative h-40 md:h-48 overflow-hidden">
+                      <img 
+                        src={article.image}
+                        alt={article.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="p-4 md:p-6">
+                      <span className={`text-xs px-2 py-1 rounded ${categoryColors[article.category] || 'bg-gray-100 text-gray-600'}`}>
+                        {article.category}
+                      </span>
+                      <h4 className="font-bold text-lg md:text-xl mt-2 mb-2">{article.title}</h4>
+                      <p className="text-gray-600 text-sm mb-3">
+                        {article.description}
+                      </p>
+                      <span className="text-xs text-gray-400">{article.date}</span>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Articles Section */}
-      {/* Articles Section */}
-      <section className="py-8 md:py-16 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 md:px-6">
-          <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Нийтлэлүүд</h2>
-            <p className="text-gray-600 text-base md:text-lg">Сүүлийн үеийн мэдээ, мэдлэг, туршлагууд</p>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mt-4"></div>
-          </div>
-          
-          {/* Category Tags */}
-          <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-12 px-2">
-            <span className="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer hover:scale-105">
-              Бүгд
-            </span>
-            <span className="bg-white text-gray-700 px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105 border border-gray-200">
-              Advent
-            </span>
-            <span className="bg-white text-gray-700 px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105 border border-gray-200">
-              Үхэл ба амилал
-            </span>
-            <span className="bg-white text-gray-700 px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105 border border-gray-200">
-              Сайн мэдээ
-            </span>
-            <span className="bg-white text-gray-700 px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105 border border-gray-200">
-              Сургаалт зүйрлэлүүд
-            </span>
-            <span className="bg-white text-gray-700 px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105 border border-gray-200">
-              Мөнх үгийн ойлголт
-            </span>
-            <span className="bg-white text-gray-700 px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-105 border border-gray-200">
-              Тамын тухай
-            </span>
-          </div>
-
-          {/* Article Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-            {/* Article 1 */}
-            <article className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 cursor-pointer">
-              <div className="relative h-40 md:h-48 overflow-hidden">
-                <img 
-                  src="https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp" 
-                  alt="Article image"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-              </div>
-              <div className="p-4 md:p-6">
-                <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Сайн мэдээ</span>
-                <h4 className="font-bold text-lg md:text-xl mt-2 mb-2">Шинэ бүтээгээд өнөөгийн махбод хамаагүй</h4>
-                <p className="text-gray-600 text-sm mb-3">
-                  Шинэ Брүс Төмөөр &ldquo;самбай бийнд&rdquo; дурсан. Хөдөө Үрэгжээлт дорсоо&rdquo; Брүс Төмөө уншихг. Загварын зааж ажил уншдах зүүрэл мэдээг.
-                </p>
-                <span className="text-xs text-gray-400">26/09/2025</span>
-              </div>
-            </article>
-
-            {/* Article 2 */}
-            <article className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 cursor-pointer">
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src="https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp" 
-                  alt="Article image"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-              </div>
-              <div className="p-4">
-                <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Сайн мэдээ</span>
-                <h4 className="font-bold mt-2 mb-2">Паулын зөрлөсөн сайн мэдээ</h4>
-                <p className="text-gray-600 text-sm mb-3">
-                  Мосегийн хуулиас амт галздаж нэгт Есүс Христ хуулд ёстой Түүний дагажих болтогдоо мэдүүлэх уртаж уул болон.
-                </p>
-                <span className="text-xs text-gray-400">26/09/2025</span>
-              </div>
-            </article>
-
-            {/* Article 3 */}
-            <article className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 cursor-pointer">
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src="https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp" 
-                  alt="Article image"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-              </div>
-              <div className="p-4">
-                <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Сайн мэдээ</span>
-                <h4 className="font-bold mt-2 mb-2">Хэмжээлшүүд нь хайр иргээл</h4>
-                <p className="text-gray-600 text-sm mb-3">
-                  Энэ нь ааргүү бүс хайж хэтэргүүд сөнгөлөн Төөрөн зөрлөгсөн мэдээ нь амьдлыг суулт хэлэлмээр зөөлөн мэндчилх хаар.
-                </p>
-                <span className="text-xs text-gray-400">26/09/2025</span>
-              </div>
-            </article>
-          </div>
-
-          {/* Bottom Articles */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mt-8 md:mt-12">
-            {/* Purple Article */}
-            <article className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 cursor-pointer">
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src="https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp" 
-                  alt="Article image"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-              </div>
-              <div className="p-4">
-                <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Сүргээлт зүйрлэлүүд</span>
-                <h4 className="font-bold mt-2 mb-2">Амилалтын найдвар</h4>
-                <p className="text-gray-600 text-sm mb-3">
-                  Хэдэгийн амилааний ер итгэлцээд лалко найдваар, амилалт түгээс зэг.
-                </p>
-                <span className="text-xs text-gray-400">26/09/2025</span>
-              </div>
-            </article>
-
-            {/* Yellow Article */}
-            <article className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 cursor-pointer">
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src="https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp" 
-                  alt="Article image"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-              </div>
-              <div className="p-4">
-                <span className="text-xs bg-orange-100 text-orange-600 px-2 py-1 rounded">Сүргээлт зүйрлэлүүд</span>
-                <h4 className="font-bold mt-2 mb-2">Төөрсөн хонины сүргээлт зүйрлэл</h4>
-                <p className="text-gray-600 text-sm mb-3">
-                  Есүсний хайр бэ ха гүүлгэлний гүүлийг нэ унших андаа сүр энэл зүүлгэлээгүй гүү үзэг хайжаадал.
-                </p>
-                <span className="text-xs text-gray-400">26/09/2025</span>
-              </div>
-            </article>
-
-            {/* Blue Article */}
-            <article className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 cursor-pointer">
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src="https://udaxgui.com/wp-content/uploads/2024/03/gospel1.jpeg.webp" 
-                  alt="Article image"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-              </div>
-              <div className="p-4">
-                <span className="text-xs bg-blue-100 text-blue-600 px-2 py-1 rounded">Сайн мэдээ</span>
-                <h4 className="font-bold mt-2 mb-2">Мөний амьдал нийтлэгт</h4>
-                <p className="text-gray-600 text-sm mb-3">
-                  Энэ бол миний CloudFlare-д ул заалзагуулсан санаанаас энэ жил амьд нийтлэг аж.
-                </p>
-                <span className="text-xs text-gray-400">26/09/2025</span>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Footer */}
       <footer className="bg-gray-800 text-white py-6 md:py-8">
