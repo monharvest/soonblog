@@ -332,6 +332,7 @@ export default function Home() {
               <ul className="space-y-2 flex flex-col md:block">
                 <li><a href="#" className="text-gray-400 hover:text-white">Нүүр</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-white">Сайн мэдээ</a></li>
+                <li><a href="/admin" className="text-gray-400 hover:text-white text-sm">Админ</a></li>
               </ul>
             </div>
           </div>
