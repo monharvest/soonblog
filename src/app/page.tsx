@@ -102,6 +102,7 @@ export default function Home() {
             onClick={() => {
               setActiveSection('home');
               setActiveCategory('Бүгд');
+              window.scrollTo(0, 0);
             }}
             className="text-3xl font-extrabold text-gray-900 tracking-tight hover:text-blue-600 transition-colors duration-300 cursor-pointer"
           >
@@ -112,6 +113,7 @@ export default function Home() {
               onClick={() => {
                 setActiveSection('home');
                 setActiveCategory('Бүгд');
+                window.scrollTo(0, 0);
               }}
               className={`font-medium transition-all duration-300 hover:scale-105 relative group ${
                 activeSection === 'home' ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'
@@ -126,6 +128,7 @@ export default function Home() {
               onClick={() => {
                 setActiveSection('articles');
                 setActiveCategory('Бүгд');
+                window.scrollTo(0, 0);
               }}
               className={`font-medium transition-all duration-300 hover:scale-105 relative group ${
                 activeSection === 'articles' && activeCategory === 'Бүгд' ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'
@@ -140,6 +143,7 @@ export default function Home() {
               onClick={() => {
                 setActiveSection('articles');
                 setActiveCategory('Сайн мэдээ');
+                window.scrollTo(0, 0);
               }}
               className={`font-medium transition-all duration-300 hover:scale-105 relative group ${
                 activeSection === 'articles' && activeCategory === 'Сайн мэдээ' ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'
