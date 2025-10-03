@@ -72,7 +72,10 @@ export default function Home() {
           </h1>
           <nav className="hidden md:flex space-x-10">
             <button 
-              onClick={() => setActiveSection('home')}
+              onClick={() => {
+                setActiveSection('home');
+                setActiveCategory('Бүгд');
+              }}
               className={`font-medium transition-all duration-300 hover:scale-105 relative group ${
                 activeSection === 'home' ? 'text-blue-600' : 'text-gray-700 hover:text-blue-600'
               }`}
